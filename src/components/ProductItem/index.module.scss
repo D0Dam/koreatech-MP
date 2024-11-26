@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 236px;
+  cursor: pointer;
+
+  &:hover {
+    .item-info > div:first-child > :first-child {
+      color: #bdbdbd;
+    }
+
+    img {
+      transform: scale(1.06);
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 40vw;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 80vw;
+  }
+}
+
+.image-wrap {
+  width: 236px;
+  height: 236px;
+  overflow: hidden;
+  border-radius: 6px;
+
+  @media screen and (max-width: 700px) {
+    width: 40vw;
+    height: 40vw;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+.image {
+  width: 236px;
+  height: 236px;
+  transition: all 0.1s linear;
+
+  @media screen and (max-width: 700px) {
+    width: 40vw;
+    height: 40vw;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 18px 4px;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+
+  color: var(--primary-color);
+
+  & > div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 26px;
+  }
+
+  & > :last-child {
+    font-family: 'SUIT-Bold';
+    font-size: 18px;
+    line-height: 18px;
+
+    @media screen and (max-width: 400px) {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.4px;
+  }
+}
+
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

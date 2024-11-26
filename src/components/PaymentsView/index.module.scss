@@ -1,0 +1,77 @@
+.container {
+  width: 100%;
+  height: fit-content;
+  border-radius: 6px;
+
+  letter-spacing: 0.5px;
+  background: var(--white-color);
+  color: #333333;
+
+  border: 1px solid #e0e0e0;
+}
+
+.title {
+  font-size: 18px;
+  line-height: 18px;
+  padding: 18px;
+  border-bottom: 2px solid #e0e0e0;
+
+  @media screen and (max-width: 460px) {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.payments-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 16px;
+  padding: 20px 0;
+  align-items: center;
+
+  font-family: 'SUIT-Medium';
+  font-size: 16px;
+  line-height: 16px;
+
+  & > ul {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+  }
+
+  & > ul:last-child {
+    margin: 24px 0;
+    font-family: 'SUIT-Bold';
+    font-size: 20px;
+
+    @media screen and (max-width: 460px) {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+.discount {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+
+  letter-spacing: 0.5px;
+
+  color: #888888;
+
+  @media screen and (max-width: 460px) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
