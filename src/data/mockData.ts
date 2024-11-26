@@ -14,6 +14,9 @@ export const paymentsData: PaymentsData = getLocalStorage<PaymentsData>(LOCAL_ST
 
 export const orderList: OrderType[] = getLocalStorage<OrderType[]>(LOCAL_STORAGE_KEY.ORDERS, []);
 
+// 긴 영어 이름 예시
+// englishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexampleenglishnameexample
+
 export const products: Product[] = [
   {
     id: 1,

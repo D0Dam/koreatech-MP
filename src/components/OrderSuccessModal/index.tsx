@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useMediaQuery from '../../hooks/useMediaQuery';
@@ -33,6 +34,18 @@ function OrderSuccessModal({
       setCartList(prev => prev.filter(item => !checkedCartIdList.includes(item.id)));
       setCheckedCartIdList([]);
     };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'; // 스크롤 막기
+    } else {
+      document.body.style.overflow = 'unset'; // 스크롤 다시 허용
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'; // 컴포넌트 언마운트 시 복구
+    };
+  }, [isModalOpen]);
 
   return (
     <Modal isModalOpen={isModalOpen} closeModal={closeModal} direction="center" useBackDropClose={false}>

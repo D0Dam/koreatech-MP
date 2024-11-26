@@ -24,6 +24,10 @@
   flex-direction: column;
   margin: 0 24px;
 
+  & th {
+    padding-left: 6px;
+  }
+
   & > tr {
     display: flex;
     border-top: 1px solid #e0e0e0;

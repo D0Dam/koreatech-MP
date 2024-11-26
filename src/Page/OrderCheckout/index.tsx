@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import LoadingSpinner from '../../components/Common/LoadingSpinner';
 import OrderSuccessModal from '../../components/OrderSuccessModal';
@@ -50,6 +50,10 @@ function OrderCheckout() {
       },
     });
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
 
   return (
     <main className={styles.container}>
