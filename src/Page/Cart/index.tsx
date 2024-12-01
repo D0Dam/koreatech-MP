@@ -22,7 +22,7 @@ function Cart() {
 
   return (
     <main className={styles.container}>
-      <h2 className={styles.title}>{getLocalStorage('name', '')}의 장바구니</h2>
+      <h2 className={styles.title}>{getLocalStorage('name', '김민재')}의 장바구니</h2>
       {cartList.length > 0 ? (
         <section className={styles['main-view']}>
           <CartProductItemList />
