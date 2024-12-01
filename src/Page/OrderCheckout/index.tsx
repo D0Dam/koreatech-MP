@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import LoadingSpinner from '../../components/Common/LoadingSpinner';
 import OrderSuccessModal from '../../components/OrderSuccessModal';
@@ -15,6 +16,7 @@ function OrderCheckout() {
 
   const [checkedPolicyList, setCheckedPolicyList] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const paymentsData = usePaymentsData(currentServerUrl);
   const Toast = useToast();
@@ -42,6 +44,12 @@ function OrderCheckout() {
   };
 
   const handleOrder = async () => {
+    if (!checkedCartIdList || checkedCartIdList.length === 0) {
+      Toast.warning('주문할 상품을 선택해주세요.');
+      navigate('/');
+      return;
+    }
+
     await mutateQuery({
       url: '/orders',
       method: 'POST',

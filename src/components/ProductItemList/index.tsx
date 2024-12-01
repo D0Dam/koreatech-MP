@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { MESSAGE } from '../../constants';
 import useGetQuery from '../../hooks/useGetQuery';
@@ -28,7 +29,9 @@ function ProductItemList() {
   return (
     <section className={styles.container}>
       {productsData?.map((item: Product) => (
-        <ProductItem key={item.id} product={item} />
+        <Link to={`/product/${item.id}`} key={item.id}>
+          <ProductItem product={item} />
+        </Link>
       ))}
     </section>
   );

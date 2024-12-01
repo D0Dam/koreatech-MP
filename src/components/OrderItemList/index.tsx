@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { OrderProduct } from '../../types';
 import OrderItem from '../OrderItem';
@@ -11,6 +11,8 @@ interface OrderItemListProps {
 }
 
 function OrderItemList({ orderItemList, orderNumber, orderTime }: OrderItemListProps) {
+  const location = useLocation();
+  const isOrderDetail = location.pathname.startsWith('/order-detail');
   const path = `/order-detail/${orderNumber}`;
   const isMobile = useMediaQuery({ maxWidth: 700 });
 
@@ -29,11 +31,13 @@ function OrderItemList({ orderItemList, orderNumber, orderTime }: OrderItemListP
             </>
           )}
         </div>
-        <Link to={path}>
-          <button type="button" className={styles['show-detail-button']}>
-            상세보기{'>'}
-          </button>
-        </Link>
+        {!isOrderDetail && (
+          <Link to={path}>
+            <button type="button" className={styles['show-detail-button']}>
+              상세보기{'>'}
+            </button>
+          </Link>
+        )}
       </div>
       <li className={styles.list}>
         {orderItemList.map(orderItem => (

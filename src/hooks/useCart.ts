@@ -98,6 +98,64 @@ const useCart = () => {
     });
   };
 
+  const addCartItemWithQuantity = async (product: Product, quantity: number) => {
+    try {
+      const res = await fetch(`${currentServerUrl}/cart-items`);
+      const productData = (await res.json()) as CartItem[];
+
+      const cart = productData?.find(cartItem => cartItem.product.id === product.id);
+
+      if (cart) {
+        await mutateQuantityQuery({
+          url: `${currentServerUrl}/cart-items/${cart.id}`,
+          method: 'PATCH',
+          bodyData: { quantity: cart.quantity + quantity },
+          headers: {
+            Authorization: `Basic ${btoa(USER)}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        Toast.success(MESSAGE.ADD_CART_SUCCESSFUL);
+        return;
+      }
+
+      await addCartQuery({
+        url: `${currentServerUrl}/cart-items`,
+        method: 'POST',
+        bodyData: { productId: product.id },
+        headers: {
+          Authorization: `Basic ${btoa(USER)}`,
+          'Content-Type': 'application/json',
+        },
+        referenceData: product,
+      });
+
+      const afterRes = await fetch(`${currentServerUrl}/cart-items`);
+      const afterProductData = (await afterRes.json()) as CartItem[];
+
+      const afterCart = afterProductData?.find(cartItem => cartItem.product.id === product.id);
+
+      if (afterCart) {
+        await mutateQuantityQuery({
+          url: `${currentServerUrl}/cart-items/${afterCart.id}`,
+          method: 'PATCH',
+          bodyData: { quantity },
+          headers: {
+            Authorization: `Basic ${btoa(USER)}`,
+            'Content-Type': 'application/json',
+          },
+        });
+      } else {
+        Toast.error(MESSAGE.ADD_CART_FAILED);
+      }
+
+      Toast.success(MESSAGE.ADD_CART_SUCCESSFUL);
+    } catch (error) {
+      Toast.error(MESSAGE.ADD_CART_FAILED);
+    }
+  };
+
   const loading = loadingAddState || loadingDeleteState || loadingQuantityState;
 
   return {
@@ -105,6 +163,7 @@ const useCart = () => {
     mutateQuantity,
     deleteCartItem,
     addCartItem,
+    addCartItemWithQuantity,
     loading,
   };
 };

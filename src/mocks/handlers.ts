@@ -22,7 +22,7 @@ const handlers = [
   rest.get('/products/:id', (req, res, ctx) => {
     const { id } = req.params;
     const product = products.find(item => item.id === Number(id));
-    const responseWithId = { ...product, id };
+    const responseWithId = { ...product, id: Number(id) };
 
     if (responseWithId) {
       return res(ctx.status(200), ctx.json(responseWithId));

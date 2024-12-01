@@ -5,6 +5,7 @@ import NotFound from '../Page/NotFound';
 import Order from '../Page/Order';
 import OrderCheckout from '../Page/OrderCheckout';
 import OrderDetail from '../Page/OrderDetail';
+import ProductDetail from '../Page/ProductDetail';
 import { ROUTE_PATH } from '../constants';
 import Root from './Root';
 
@@ -16,6 +17,7 @@ function Router() {
       errorElement: <NotFound />,
       children: [
         { index: true, element: <Home /> },
+        { path: ROUTE_PATH.PRODUCT_DETAIL, element: <ProductDetail /> },
         { path: ROUTE_PATH.CART, element: <Cart /> },
         { path: ROUTE_PATH.ORDER, element: <Order /> },
         { path: ROUTE_PATH.ORDER_DETAIL, element: <OrderDetail /> },

@@ -1,3 +1,4 @@
+import { ReactEventHandler } from 'react';
 import { ReactComponent as ShopIcon } from '../../assets/mini-shop-icon.svg';
 import useCart from '../../hooks/useCart';
 import { Product } from '../../types';
@@ -14,17 +15,23 @@ function AddCartButton({ product }: AddCardButtonProps) {
 
   const cart = cartList?.find(cartItem => cartItem.product.id === product.id);
 
-  const handleClick = async () => {
+  const handleClick: ReactEventHandler<HTMLButtonElement> = async e => {
+    e.stopPropagation();
+    e.preventDefault();
     await addCartItem(product);
   };
 
-  const handleUpButton = async () => {
+  const handleUpButton: ReactEventHandler<HTMLButtonElement> = async e => {
+    e.stopPropagation();
+    e.preventDefault();
     if (cart) {
       await mutateQuantity(cart.id, cart.quantity + 1);
     }
   };
 
-  const handleDownButton = async () => {
+  const handleDownButton: ReactEventHandler<HTMLButtonElement> = async e => {
+    e.stopPropagation();
+    e.preventDefault();
     if (cart) {
       if (cart.quantity <= 1) {
         await deleteCartItem(cart.id);
